@@ -40,7 +40,10 @@ WeaponsSection:NewDropdown("Weapon Mod", "Mods the weapon you selected to make i
     local module
     if plr:WaitForChild("Backpack")[v] then
         module = require(plr:WaitForChild("Backpack")[v].GunStates)
-        module["MaxAmmo"] = d        module["Damage"] = 500
+        module["MaxAmmo"] = math.huge 
+        module["StoredAmmo"] = math.huge 
+        module["CurrentAmmo"] = math.huge 
+        module["Damage"] = 500
         module["FireRate"] = 0.005
         module["ReloadTime"] = 0.4
         module["Bullets"] = 4
