@@ -36,6 +36,8 @@ WeaponsSection:NewDropdown("Weapon Giver", "Gives you the desired weapon", {"Rem
     workspace.Remote.ItemHandler:InvokeServer(ohInstance1)
 end)
 
+local PlrsSection = PLife:NewSection("Players")
+
 WeaponsSection:NewDropdown("Weapon Mod", "Mods the weapon you selected to make it OP", {"Remington 870", "AK-47", "M9"}, function(v)
     local module
     if plr:WaitForChild("Backpack")[v] then
@@ -48,4 +50,14 @@ WeaponsSection:NewDropdown("Weapon Mod", "Mods the weapon you selected to make i
         module["ReloadTime"] = 0.4
         module["Bullets"] = 4
     end
+end)
+
+local PlrArrTextBox = PlrsSection:NewTextBox("Arrest", "Press enter after player name to arrest it", function(txt)
+    local ohInstance1 = workspace[txt]["Right Arm"]
+
+    workspace.Remote.arrest:InvokeServer(ohInstance1)
+end)
+
+local PlrTpTextBox = PlrsSection:NewTextBox("TP", "Press enter to TP to player", function(txt)
+    workspace[plr.Name].HumanoidRootPart.CFrame = workspace[txt].HumanoidRootPart.CFrame + workspace[txt].HumanoidRootPart.CFrame.LookVector * 5
 end)
